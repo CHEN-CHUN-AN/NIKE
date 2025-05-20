@@ -122,14 +122,14 @@
   <!-- 第五部分設定繼續按鈕 -->
 </div>
 <script>
-  /* 未輸入email時跳出提醒 有輸入時跳出請收取驗證信 */
-  function continueLogin(A {
-    const email = document.getElementById('email').value;
-    if (!email) {
-      alert("請輸入電子郵件");
-      return;
-    }
 
+    function continueLogin() {
+    const email = document.getElementById('email').value;
+
+    if (!email) {
+    alert("請輸入電子郵件");
+    return;
+  }
     alert("請至信箱內收取驗證信: " + email);
   }
 </script>
