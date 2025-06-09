@@ -3,136 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nike 登入／註冊頁面">
   <title>Nike 登入 / 註冊</title>
-  <style>
-    /* 設定整個頁面的字體、背景色及邊距 */
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
-      background-color: #fff;
-      margin: 0;
-      padding: 0;
-    }
-
-    /* 容器元素，設定最大寬度並置中 */
-    .container {
-      max-width: 420px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
-
-    /* logo 區塊，使用 flex 排版並置中 */
-    .logo {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-bottom: 30px;
-    }
-
-    /* logo 中的圖片大小設定 */
-    .logo img {
-      height: 55px;
-    }
-
-    /* 標題字級、字重、置中及外距 */
-    h1 {
-      font-size: 20px;
-      font-weight: 500;
-      text-align: center;
-      margin-bottom: 16px;
-    }
-
-    /* 區域文字，置中及顏色設定 */
-    .region {
-      text-align: center;
-      font-size: 14px;
-      color: #444;
-      margin-bottom: 24px;
-    }
-
-    /* 區域文字中的連結樣式 */
-    .region a {
-      color: #1a1a1a;
-      text-decoration: underline;
-      margin-left: 5px;
-    }
-
-    /* 電子郵件輸入框樣式 */
-    input[type="email"] {
-      width: 100%;
-      padding: 14px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      box-sizing: border-box;
-      margin-bottom: 24px;
-    }
-
-    /* 條款說明文字 */
-    .terms {
-      font-size: 12px;
-      color: #777;
-      text-align: center;
-      line-height: 1.5;
-      margin-bottom: 24px;
-    }
-
-    /* 條款說明中連結的樣式 */
-    .terms a {
-      color: #000;
-      text-decoration: underline;
-    }
-
-    /* 按鈕樣式 */
-    button {
-      width: 100%;
-      background-color: #000;
-      color: #fff;
-      padding: 14px;
-      border: none;
-      border-radius: 30px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    /* 按鈕滑鼠懸停時的背景色變化 */
-    button:hover {
-      background-color: #333;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="container">
   <div class="logo">
-    <img src="ni.png" alt="Nike">
-    <img src="jor.png" alt="Jordan">
+    <img src="ni.webp" alt="Nike">
+    <img src="jor.webp" alt="Jordan">
     <!-- 第一部分設定圖片 -->
   </div>
   <h1>輸入你的電子郵件即可註冊或登入。</h1>
-  <!-- 第二部分設定標題列 -->
-  <div class="region">台灣<a href="#">變更</a></div>
-  <!-- 第三部分設定國籍選擇列 -->
-  <input type="email" id="email" placeholder="電子郵件*">
-  <!-- 第四部分設定email輸入框 -->
-  <div class="terms">
-    繼續即代表我同意 <a href="#">Nike 的隱私權政策與使用條款</a>。
-    <!-- 第五部分設定隱私權政策 -->
+  <div class="region">
+    台灣
+    <div class="dropdown" style="display:inline-block; position:relative;">
+      <button type="button" id="dropdownBtn" style="margin-left:5px; text-decoration:underline; color:#1a1a1a; background:none; border:none; cursor:pointer; font:inherit;">變更</button>
+      <div id="dropdownMenu" style="display:none; position:absolute; left:0; top:22px; background:#fff; border:1px solid #ccc; border-radius:4px; min-width:80px; z-index:10;">
+        <div class="dropdown-item" data-lang="zh" style="padding:6px 16px; cursor:pointer;">中文</div>
+        <div class="dropdown-item" data-lang="en" style="padding:6px 16px; cursor:pointer;">English</div>
+      </div>
+    </div>
   </div>
-  <button onclick="continueLogin()">繼續</button>
-  <!-- 第五部分設定繼續按鈕 -->
+
+  <input type="email" id="email" placeholder="電子郵件*" onblur="validateEmail()">
+  <div id="emailError" style="color:#d32f2f; font-size:12px; margin-top:-18px; margin-bottom:18px; min-height:18px;"></div>
+  <div class="terms">
+    繼續即代表我同意Nike 的
+    <a href="https://agreementservice.svs.nike.com/rest/agreement?agreementType=privacyPolicy&country=TW&language=zh&requestType=redirect&uxId=4fd2d5e7db76e0f85a6bb56721bd51df" target="_blank">隱私權政策</a>
+    與
+    <a href="https://agreementservice.svs.nike.com/rest/agreement?agreementType=termsOfUse&location=tw&language=zh&requestType=redirect&uxId=4fd2d5e7db76e0f85a6bb56721bd51df" target="_blank">使用條款</a>。
+  </div>
+  <div class="button-wrapper">
+    <button onclick="continueLogin()">繼續</button>
+  </div>
 </div>
-<script>
-
-    function continueLogin() {
-    const email = document.getElementById('email').value;
-
-    if (!email) {
-    alert("請輸入電子郵件");
-    return;
-  }
-    alert("請至信箱內收取驗證信: " + email);
-  }
-</script>
+<script src="script.js"></script>
 </body>
 </html>
-
